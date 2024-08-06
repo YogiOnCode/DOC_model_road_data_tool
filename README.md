@@ -1,15 +1,48 @@
-# Vehicle Path Estimation with Geospatial Data (DOC Model)
+# Estimation of Accurate Path Length with Geospatial Data Analysis (dOC Model)
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
 ![HERE API](https://img.shields.io/badge/HERE-Route%20Matching%20v8-00AFAA)
 ![Pandas](https://img.shields.io/badge/pandas-150458?logo=pandas&logoColor=white)
+[![Report](https://img.shields.io/badge/Chalmers-Technical%20Report%202024-blue)](https://research.chalmers.se/publication/541772)
 
-Code from my Master's thesis, **"Advancing Vehicle Path Estimation Using Geospatial Data Analysis"**.
-The tool turns raw GPS traces from a vehicle into a **Deterministic Operating Cycle (DOC)** model: a
+This repository holds the code for my Master's thesis in Mechatronics Engineering, **"Estimation of Accurate Path Length with
+Geospatial Data Analysis"**. I carried out the work at **Chalmers University of Technology** (Vehicle Engineering &
+Autonomous Systems), and it was published there as a technical report.
+
+The tool turns raw GPS traces from a vehicle into a **Deterministic Operating Cycle (dOC)** model: a
 distance-indexed description of the road (elevation, gradient, curvature, speed limits, traffic signs,
 weather) that can be used for energy-consumption analysis and residual range estimation.
 
+📄 **Read the report:** [research.chalmers.se/publication/541772](https://research.chalmers.se/publication/541772) · [Full text (PDF)](https://research.chalmers.se/publication/541772/file/541772_Fulltext.pdf)
+
 ---
+
+## Research
+
+Accurate path length is the foundation of residual range prediction for electric and smart vehicles. The thesis
+compares several distance-estimation methods (Haversine, Spherical Law of Cosines, Geodesic, and new
+**elevation-embedded** variants) on real road data from flat and hilly routes. It measures both accuracy against
+ground truth and computation time. The flat route is the Stockholm Marathon course, and the hilly route is the
+Tour de France stage from Nice to Col de la Couillole.
+
+| Method | Error, flat route | Error, hilly route | Compute time | Best for |
+| --- | --- | --- | --- | --- |
+| **Vincenty variant** | **0.008 %** | **0.10 %** | 0.01 – 0.03 s | High-precision range prediction |
+| Geodesic | 0.07 % | 0.21 % (with elevation) | 0.40 – 1.20 s | High accuracy when compute is available |
+| Haversine / Spherical Law of Cosines | ~0.31 % | ~0.61 – 0.63 % | 0.005 – 0.02 s | Fast, moderate-accuracy estimates |
+
+The dOC model was then generated and validated on real routes, including **Lund → Malmö** (short) and
+**Oslo → Bergen** (long). It was also tested for robustness with noise injected into the GPS input.
+
+| | |
+| --- | --- |
+| **Author** | Yogeswaran Amsavalli |
+| **Supervisor** | Carl Emvin, Chalmers University of Technology |
+| **Degree** | MSc Mechatronics Engineering, University of Trento & Budapest University of Technology and Economics |
+| **Published** | Chalmers technical report, 2024 (Dept. of Mechanics and Maritime Sciences) |
+| **Keywords** | dOC, path length estimation, road data |
+
+
 
 ## How it works
 
@@ -93,6 +126,19 @@ Python · pandas · NumPy · pyproj · haversine · jsonpath-ng · Matplotlib ·
 ├── sample_input.txt    # Example GPS trace
 ├── dOCformat.pdf       # DOC format specification
 └── Illustration.pdf    # Example output / illustration
+```
+
+## Citation
+
+```bibtex
+@techreport{amsavalli2024pathlength,
+  title       = {Estimation of Accurate Path Length with Geospatial Data Analysis},
+  author      = {Amsavalli, Yogeswaran and Emvin, Carl},
+  institution = {Chalmers University of Technology, Department of Mechanics and Maritime Sciences},
+  address     = {Gothenburg, Sweden},
+  year        = {2024},
+  url         = {https://research.chalmers.se/publication/541772}
+}
 ```
 
 ## Author
