@@ -141,6 +141,10 @@ Python · pandas · NumPy · pyproj · haversine · jsonpath-ng · Matplotlib ·
 }
 ```
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Author
 
 **Yogeswaran Amsavalli** · [GitHub](https://github.com/YogiOnCode)
